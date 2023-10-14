@@ -13,7 +13,9 @@ def generate_text(prompt, temp=0):
   return response.generations[0].text
 
 context = "When it comes to designing software, effective design is very important. Connecting to databases can be an extremely expensive task, particularly because of how much time it typically takes. The inefficient way to use a database connection would be connecting and disconnecting multiple times every time the database is required. Because of this, the best practice is to connect to it once, perform all the necessary functions dealing with the database, and then disconnect [x]. Such a practice can be followed by using the singleton pattern in database connections. This involves setting up the database only once. Then, whichever methods require calling the database will leverage this connection [x]. This type of design is efficient in multiple ways. The primary business concern would be that it is fast, meaning that it spends less company time and is therefore less expensive. It is also beneficial for the environment, as it saves energy and processing power [x+1]. The reason for this is that excessive connections and disconnections to the database are avoided."
-prompt = f"""Write questions based on this lesson: {context}, giving one question for every main topic. Write an answer on the following line.:
+prompt = f"""Write questions based on this lesson: {context}, giving one question for every main topic. Write an answer on the following line. The format should look like:
+Question:
+Answer:
 
 """
 
@@ -36,12 +38,24 @@ prompt = f"""Write questions based on this lesson: {context}, giving one questio
 # Answer 6: Defining problems, conducting and narrowing research, analyzing criteria, finding and analyzing solutions, making decisions.
 
 question_response = generate_text (prompt, temp=0.5)
-with open("question.txt", "r+") as q_text_file: 
+print("ORIGINAL QUESTIONS AND ANSWERS:")
+print(question_response)
+
+# file path for questions
+file_path = "src/qs/question.txt"
+
+with open(file_path, "w") as q_text_file: 
   # save response as text file
   q_text_file.write(question_response)
-  
-  file_contents = q_text_file.read()
-  print(file_contents)
+
+with open(file_path, "r") as q_txt:
+  # read and print each line
+  print("FILE PRINT:")
+  for line in q_txt:
+    print(line, end="")
+#   file_contents = q_text_file.read()
+#   print("FILE PRINT:")
+#   print(file_contents)
   # first_line=q_text_file.readline().strip()
 # print(question_response)
 
