@@ -90,6 +90,14 @@ with open("src/qs/question.txt", 'r') as file:
 # second line is answer that user's input is compared against
 # loop continue calling the question-making function. end when 
 
+
+# above this line is where we get the questions and answers arrays
+#####################################################################
+# below this line is the interactions: this could also be moved to js
+# what this does is ask you a question, then prompt you to answer.
+# then once you answer it sends a message of encouragemeny
+# 
+
 import requests
 
 # Replace with your Cohere API endpoint and API key
