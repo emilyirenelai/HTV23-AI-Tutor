@@ -4,17 +4,15 @@ const fs = require('fs');
 
 const vision = require('@google-cloud/vision');
 
-router.post('/image', async function(req, res, next) {
+router.get('/image', async function(req, res, next) {
     // creates a client
     const client = new vision.ImageAnnotatorClient();
-    const fileName = '/Users/chaunguyen/workspace/HTV23-AI-Tutor/server/routes/';
 
-    fs.writeFile('decoded-image.png', req.body.file, {encoding: 'base64'}, function(err) {
-        console.log('File created');
-    });
+    const bucketName = process.env.BUCKET_NAME;
+    const fileName = 'image.png';
 
-    // performs text detection on the local file
-    const [result] = await client.textDetection(fileName + 'decoded-image.png');
+    // performs text detection on the gcs file
+    const [result] = await client.textDetection(`gs://${bucketName}/${fileName}`);
     const detections = result.textAnnotations;
     console.log('Text:');
     detections.forEach(text => console.log(text));

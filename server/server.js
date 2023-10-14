@@ -9,7 +9,7 @@ app.use(express.json());
 app.use(express.static('public'));
 
 // routes
-app.use("/encode", require("./routes/encode"));
+app.use("/upload", require("./routes/upload"));
 app.use("/recognize", require("./routes/recognize"));
 app.use("/summarize", require("./routes/summarize"));
 
