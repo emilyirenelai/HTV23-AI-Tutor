@@ -12,7 +12,8 @@ def generate_text(prompt, temp=0):
     temperature=temp)
   return response.generations[0].text
 
-context = "When it comes to designing software, effective design is very important. Connecting to databases can be an extremely expensive task, particularly because of how much time it typically takes. The inefficient way to use a database connection would be connecting and disconnecting multiple times every time the database is required. Because of this, the best practice is to connect to it once, perform all the necessary functions dealing with the database, and then disconnect [x]. Such a practice can be followed by using the singleton pattern in database connections. This involves setting up the database only once. Then, whichever methods require calling the database will leverage this connection [x]. This type of design is efficient in multiple ways. The primary business concern would be that it is fast, meaning that it spends less company time and is therefore less expensive. It is also beneficial for the environment, as it saves energy and processing power [x+1]. The reason for this is that excessive connections and disconnections to the database are avoided."
+# context will be replaced with user input prompt
+context = "When it comes to designing software, effective design is very important. Connecting to databases can be an extremely expensive task, particularly because of how much time it typically takes. The inefficient way to use a database connection would be connecting and disconnecting multiple times every time the database is required. Because of this, the best practice is to connect to it once, perform all the necessary functions dealing with the database, and then disconnect. Such a practice can be followed by using the singleton pattern in database connections. This involves setting up the database only once. Then, whichever methods require calling the database will leverage this connection. This type of design is efficient in multiple ways. The primary business concern would be that it is fast, meaning that it spends less company time and is therefore less expensive. It is also beneficial for the environment, as it saves energy and processing power. The reason for this is that excessive connections and disconnections to the database are avoided."
 prompt = f"""Write questions based on this lesson: {context}, giving one question for every main topic. Write an answer on the following line. The format should look like:
 Question:
 Answer:
@@ -48,18 +49,19 @@ with open(file_path, "w") as q_text_file:
   # save response as text file
   q_text_file.write(question_response)
 
-with open(file_path, "r") as q_txt:
-  # read and print each line
-  print("FILE PRINT:")
-  for line in q_txt:
-    print(line, end="")
-#   file_contents = q_text_file.read()
-#   print("FILE PRINT:")
-#   print(file_contents)
-  # first_line=q_text_file.readline().strip()
+# / test for printing the text file to ensure it comes out correctly
+# with open(file_path, "r") as q_txt:
+  # / read and print each line
+  # print("FILE PRINT:")
+  # for line in q_txt:
+    # print(line, end="")
+
 # print(question_response)
 
 # take this response and instead of printing it
 # first line (question) becomes output for viewer to see
+
+
+
 # second line is answer that user's input is compared against
 # loop continue calling the question-making function. end when 
