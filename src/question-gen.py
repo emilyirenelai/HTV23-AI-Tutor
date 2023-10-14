@@ -2,6 +2,7 @@
 # python -m pip install cohere 
 
 import cohere
+import fnmatch
 co = cohere.Client('L2VMOXwleskZQjVuP5QEe2puJTKNLAzGaRhSEVTK')
 
 def generate_text(prompt, temp=0):
@@ -39,8 +40,8 @@ Answer:
 # Answer 6: Defining problems, conducting and narrowing research, analyzing criteria, finding and analyzing solutions, making decisions.
 
 question_response = generate_text (prompt, temp=0.5)
-print("ORIGINAL QUESTIONS AND ANSWERS:")
-print(question_response)
+# print("ORIGINAL QUESTIONS AND ANSWERS:")
+# print(question_response)
 
 # file path for questions
 file_path = "src/qs/question.txt"
@@ -58,10 +59,30 @@ with open(file_path, "w") as q_text_file:
 
 # print(question_response)
 
-# take this response and instead of printing it
-# first line (question) becomes output for viewer to see
+# / take this response and instead of printing it
+# / first line (question) becomes output for viewer to see
+# / counting function:
+# with open("src/qs/question.txt", 'r') as fp:
+# 	for count, line in enumerate(fp):
+# 		pass
+# count for number of lines in text file     
+# line_counter = count+1
+q_s=[]
+a_s=[]
 
+with open("src/qs/question.txt", 'r') as file:
+     for line in file:
+          line = line.strip()
 
+          if line.startswith("Question"):
+               q_s.append(line)
+          elif line.startswith("Answer"):
+               a_s.append(line)
+
+print(q_s)
+print(a_s)
+# now we should have an array of questions q_s
+# and an array of answers a_s          
 
 # second line is answer that user's input is compared against
 # loop continue calling the question-making function. end when 
