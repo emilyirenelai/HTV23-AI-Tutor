@@ -1,12 +1,10 @@
 import React from 'react';
-import ARComponent from './ardino';
+//import ARComponent from './components/ardino';
+import Routes from './Routes';
 
 function App() {
     return (
-      <h1>This is a trial</h1>,
-      <div style={{ margin: 0, overflow: 'hidden' }}>
-            <ARComponent />
-      </div>
+      <Routes />
     );
 }
 

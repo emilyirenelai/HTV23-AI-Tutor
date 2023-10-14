@@ -3,7 +3,7 @@ import "./ardino.css";
 
 function ARComponent() {
     return (
-        <div>
+        <div style={{ margin: 0, overflow: 'hidden' }}>
         <a-scene xr="type: ar">
             <a-box position="0 2 -5" rotation="0 45 0" color="#4CC3D9"></a-box>
             <a-entity camera position="0 1.6 0"></a-entity>
