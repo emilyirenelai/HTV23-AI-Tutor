@@ -1,0 +1,14 @@
+ Question: What is the main idea of this passage?
+Answer: Connecting to databases can be expensive in terms of time, so it is efficient to connect once and have multiple database functions use the same connection.
+
+Question: What makes the inefficient way of using a database connection inefficient?
+Answer: Connecting and disconnecting multiple times every time the database is required.
+
+Question: What is the singleton pattern? How is it used in database connections?
+Answer: The singleton pattern involves setting up the database only once. Then, whichever methods require calling the database will leverage this one connection.
+
+Question: Why is the type of design efficient in multiple ways?
+Answer: It's fast and saves energy and processing power.
+
+Question: What is the primary business concern with the type of design?
+Answer: It is fast.
