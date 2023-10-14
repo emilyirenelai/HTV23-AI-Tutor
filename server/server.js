@@ -12,6 +12,7 @@ app.use(express.static('public'));
 app.use("/upload", require("./routes/upload"));
 app.use("/recognize", require("./routes/recognize"));
 app.use("/summarize", require("./routes/summarize"));
+app.use("/generate", require("./routes/generate"));
 
 app.listen(port, () => {
   console.log(`Server is running on port: ${port}`);
