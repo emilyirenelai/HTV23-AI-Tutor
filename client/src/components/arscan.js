@@ -6,7 +6,7 @@ function ARComponent() {
         <div style={{ margin: 0, overflow: 'hidden' }}>
         <a-scene xr="type: ar">
             {/* Adding a GLTF model */}
-            <a-gltf-model src="/AngryMolang.gltf" 
+            <a-gltf-model src="/ColoredNeutral3d.gltf" 
                 position="0 2 -3" 
                 scale="0.1 0.1 0.1" 
                 material="color: red;"
