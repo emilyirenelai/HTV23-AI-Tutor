@@ -49,7 +49,7 @@ for i in range(counter):
     from sklearn.metrics.pairwise import cosine_similarity
     # cosine similarity between sentence 1 and sentence 2
     rating = cosine_similarity(sentence1, sentence2)[0][0]
-    if rating >= 1.4 or rating <= 0.6:
+    if rating >= 1.3 or rating <= 0.7:
       print("Incorrect answer...")
       tutor_sadcourage = generate_text(sadprompt, temp=0.9)
       with open(sad_file_path, "w") as sad_text_file: 
