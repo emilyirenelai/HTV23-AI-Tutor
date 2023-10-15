@@ -4,24 +4,30 @@ const router = express.Router();
 const cohere = require('cohere-ai'); 
 cohere.init(process.env.COHERE_API_KEY);
 
+router.post('/', async function(req, res, next) {
+    const context = req.body.text;
+    const prompt = `Write questions based on this lesson: ${context}, giving one question for every main topic. Write an answer on the following line. The format should look like:\nQuestion:\nAnswer:\n\n`
 
-router.get('/', async function(req, res, next) {
-    // Hit the `generate` endpoint on the `large` model
+    // Hit the `generate` endpoint on the `command` model
     const generateResponse = await cohere.generate({
-        model: "large",
-        prompt: "Once upon a time in a magical land called",
-        max_tokens: 50,
-        temperature: 1,
+        model: "command",
+        prompt: prompt,
+        max_tokens: 1000,
+        temperature: 0.5,
     });
 
-    /*
-    {
-        statusCode: 200,
-        body: {
-        text: "Eldorado, the anointed monarchs of the ancient world and the ruling family were divided into three kingdoms, each of which was ruled by an individual leader."
-        }
-    }
-    */
+    console.log(generateResponse.body);
+
+    // Split response into array of questions and answers
+    const arr = generateResponse.body.generations[0].text.split('\n').filter(str => str).map(str => str.trim());
+
+    const questionRegex = new RegExp("^Question: ");
+    const answerRegex = new RegExp("^Answer: ");
+    const questions = arr.filter(function(str) { return questionRegex.test(str); }).map(str => str.slice(10));
+    const answers = arr.filter(function(str) { return answerRegex.test(str); }).map(str => str.slice(8));
+    res.status(200).send(
+        { message: "Success", questions: questions, answers: answers }
+    );
 });
 
 module.exports = router;

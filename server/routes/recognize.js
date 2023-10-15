@@ -3,6 +3,7 @@ const router = express.Router();
 const fs = require('fs');
 
 const vision = require('@google-cloud/vision');
+const {Storage} = require('@google-cloud/storage');
 const client = new vision.ImageAnnotatorClient();
 const bucketName = process.env.BUCKET_NAME;
 
@@ -47,7 +48,9 @@ router.post('/', async function(req, res) {
         const [filesResponse] = await operation.promise();
         const destinationUri = filesResponse.responses[0].outputConfig.gcsDestination.uri;
         console.log('Json saved to: ' + destinationUri);
-        res.end();
+        res.status(200).send(
+            { message: "Success", text: filesResponse.responses[0] }
+        );
     }
     // Hanlde image file
     else {
@@ -56,8 +59,10 @@ router.post('/', async function(req, res) {
         );
         const fullTextAnnotation = result.fullTextAnnotation;
         console.log(fullTextAnnotation.text);
-        res.send(fullTextAnnotation.text);
+        res.status(200).send(
+            { message: "Success", text: fullTextAnnotation.text }
+        );
     }
-})
+});
 
 module.exports = router;
