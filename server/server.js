@@ -13,6 +13,7 @@ app.use("/upload", require("./routes/upload"));
 app.use("/recognize", require("./routes/recognize"));
 app.use("/summarize", require("./routes/summarize"));
 app.use("/generate", require("./routes/generate"));
+app.use("/check", require("./routes/check"));
 
 app.listen(port, () => {
   console.log(`Server is running on port: ${port}`);
