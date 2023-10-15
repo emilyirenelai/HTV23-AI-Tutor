@@ -1,3 +1,5 @@
+# top part is template code
+
 # make sure to:
 # pip install cohere altair
 # pip install scikit-learn
@@ -32,52 +34,38 @@ def generate_text(prompt, temp=0):
 cohere_api_endpoint = "https://api.cohere.ai/v1/embed"
 api_key = "L2VMOXwleskZQjVuP5QEe2puJTKNLAzGaRhSEVTK"
 
-# output question
-counter = len(q_s)
+# prompt and file path for incorrect answer response
 encourage = "Write a short encouraging phrase 2-10 words long to encourage a student to keep going! Be creative."
-sadprompt = "Write a short encouraging phrase 2-10 words long telling a student that they got the answer wrong, but motivate them to keep going. Be creative."
 hype_file_path = "src/qs/hype.txt"
+
+# prompt and file path for correct answer response
+sadprompt = "Write a short encouraging phrase 2-10 words long telling a student that they got the answer wrong, but motivate them to keep going. Be creative."
 sad_file_path = "src/qs/sad.txt"
 
-for i in range(counter):
-  if q_s[i] and a_s[i]:
-    print(q_s[i])
-    usr_ans = input("Answer TutorBo! ")
-    real_ans = (a_s[i])
+# sadcourage is for incorrect prompt: in question-check.py this comes out when prompt is incorrect
+tutor_sadcourage = generate_text(sadprompt, temp=0.9)
+with open(sad_file_path, "w") as sad_text_file: 
+    # save response as text file
+    sad_text_file.write(tutor_sadcourage)
 
-    # embedding for user answer: sentence1
-    sentence1 = np.array(co.embed([usr_ans]).embeddings)
-    # embedding for tutor answer: sentence2
-    sentence2 = np.array(co.embed([real_ans]).embeddings)
-
-    from sklearn.metrics.pairwise import cosine_similarity
-    # cosine similarity between sentence 1 and sentence 2
-    rating = cosine_similarity(sentence1, sentence2)[0][0]
-    if rating >= 1.3 or rating <= 0.7:
-      print("Incorrect answer...")
-      tutor_sadcourage = generate_text(sadprompt, temp=0.9)
-      with open(sad_file_path, "w") as sad_text_file: 
-      # save response as text file
-        sad_text_file.write(tutor_sadcourage)
-
-      with open(sad_file_path, "r") as sad_text_file:
-        sadlines = [line for line in sad_text_file if line.strip()]
+with open(sad_file_path, "r") as sad_text_file:
+    sadlines = [line for line in sad_text_file if line.strip()]
       
-      if sadlines:
-         random_line = random.choices(sadlines)
-         print("TutorBo says: " + random_line[0])
+if sadlines:
+    random_line = random.choices(sadlines)
+    print("TutorBo says: " + random_line[0])
+else:
+    # correct answer
+    print("Correct answer!")
+    tutor_encourage = generate_text (encourage, temp=0.9)
+    with open(hype_file_path, "w") as hype_text_file: 
+    # save response as text file
+    hype_text_file.write(tutor_encourage)
 
-    else:
-      print("Correct answer!")
-      tutor_encourage = generate_text (encourage, temp=0.9)
-      with open(hype_file_path, "w") as hype_text_file: 
-      # save response as text file
-        hype_text_file.write(tutor_encourage)
-
-      with open(hype_file_path, "r") as hype_text_file:
-        lines = [line for line in hype_text_file if line.strip()]
+    with open(hype_file_path, "r") as hype_text_file:
+    lines = [line for line in hype_text_file if line.strip()]
       
-      if lines:
+    if lines:
          random_line = random.choices(lines)
          print("TutorBo says: " + random_line[0])
 
