@@ -24,7 +24,7 @@ def generate_text(prompt, temp=0):
   return response.generations[0].text
 
 
-# Replace with your Cohere API endpoint and API key
+# Cohere API endpoint and API key
 cohere_api_endpoint = "https://api.cohere.ai/v1/embed"
 api_key = "L2VMOXwleskZQjVuP5QEe2puJTKNLAzGaRhSEVTK"
 
@@ -101,3 +101,7 @@ for i in range(counter):
 # headers = {
 #     "Authorization": f"Bearer {api_key}"
 # }
+
+# cosine similarity reference: 
+# https://txt.cohere.com/what-is-similarity-between-sentences/
+# https://colab.research.google.com/github/cohere-ai/notebooks/blob/main/notebooks/What_Is_Similarity_Between_Sentences.ipynb?ref=txt.cohere.com#scrollTo=tZ7ls1JlkngY
