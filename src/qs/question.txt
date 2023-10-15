@@ -1,10 +1,11 @@
- Question: What is the main topic of this lesson?
-Answer: effective design
-Question: Why is effective design important when it comes to designing software?
-Answer: it can improve efficiency, and solve primary business concerns.
-Question: What is the inefficient way to use a database connection?
-Answer: connecting and disconnecting multiple times every time the database is required.
-Question: What is the benefit of the singleton pattern for database connections?
-Answer: It involves setting up the database only once. Then, whichever methods require calling the database will leverage this connection.
-Question: In addition to being fast, what are the benefits of efficient design?
-Answer: it is also beneficial for the environment, as it saves energy and processing power.
+ Question: What is the main idea of this lesson?
+Answer: Connecting to databases can be expensive in terms of time and resources, therefore, it is efficient to connect once and perform all the necessary functions dealing with the database.
+
+Question: Why is it expensive to connect and disconnect from a database multiple times?
+Answer: Because it requires spending time and company resources for each connection and disconnection.
+
+Question: What is the Singleton Pattern?
+Answer: The Singleton Pattern is a design pattern that restricts the instantiation of a class to one object. It is often used for database connections.
+
+Question: Why is it beneficial for the environment to save energy and processing power?
+Answer: Because the excessive connections and disconnections to the database are avoided. This, in turn, reduces the carbon footprint.

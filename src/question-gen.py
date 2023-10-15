@@ -82,8 +82,8 @@ with open("src/qs/question.txt", 'r') as file:
           elif line.startswith("Answer"):
                a_s.append(line)
 
-# print(q_s)
-# print(a_s)
+print(q_s)
+print(a_s)
 # now we should have an array of questions q_s
 # and an array of answers a_s          
 
