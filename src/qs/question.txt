@@ -1,14 +1,11 @@
- Question: What is the main idea of this passage?
-Answer: Connecting to databases can be expensive in terms of time and resources, therefore, it is efficient to connect once and use the connection for all required methods.
+ Question: What is the main idea of this lesson?
+Answer: Connecting to databases can be expensive in terms of time and resources, therefore, it is efficient to connect once and perform all the necessary functions dealing with the database.
 
-Question: What is the inefficient way of using database connections?
-Answer: Connecting and disconnecting multiple times whenever the database is needed.
+Question: Why is it expensive to connect and disconnect from a database multiple times?
+Answer: Because it requires spending time and company resources for each connection and disconnection.
 
-Question: What is the benefit of following the singleton pattern in database connections?
-Answer: It avoids excessive connections and disconnections, making it more efficient.
+Question: What is the Singleton Pattern?
+Answer: The Singleton Pattern is a design pattern that restricts the instantiation of a class to one object. It is often used for database connections.
 
-Question: What is the primary business concern with the singleton pattern?
-Answer: It is fast and saves the company time and money.
-
-Question: How is the singleton pattern beneficial for the environment?
-Answer: It saves energy and processing power by avoiding unnecessary connections and disconnections.
+Question: Why is it beneficial for the environment to save energy and processing power?
+Answer: Because the excessive connections and disconnections to the database are avoided. This, in turn, reduces the carbon footprint.

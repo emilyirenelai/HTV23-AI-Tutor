@@ -1,9 +1,12 @@
 # must install cohere in terminal to use:
 # python -m pip install cohere 
 
+
 import cohere
 import fnmatch
+import random
 co = cohere.Client('L2VMOXwleskZQjVuP5QEe2puJTKNLAzGaRhSEVTK')
+api_key = 'L2VMOXwleskZQjVuP5QEe2puJTKNLAzGaRhSEVTK'
 
 def generate_text(prompt, temp=0):
   response = co.generate(
@@ -86,3 +89,78 @@ print(a_s)
 
 # second line is answer that user's input is compared against
 # loop continue calling the question-making function. end when 
+
+
+# above this line is where we get the questions and answers arrays
+#####################################################################
+# below this line is the interactions: this could also be moved to js
+# what this does is ask you a question, then prompt you to answer.
+# then once you answer it sends a message of encouragemeny
+# 
+
+import requests
+
+# Replace with your Cohere API endpoint and API key
+cohere_api_endpoint = "https://api.cohere.ai/v1/embed"
+api_key = "L2VMOXwleskZQjVuP5QEe2puJTKNLAzGaRhSEVTK"
+
+# output question
+counter = len(q_s)
+encourage = "Write a short encouraging phrase 2-10 words long to encourage a student to keep going! Be creative."
+hype_file_path = "src/qs/hype.txt"
+
+for i in range(counter):
+  if q_s[i] and a_s[i]:
+    print(q_s[i])
+    usr_ans = input("Answer TutorBo! ")
+    real_ans = (a_s[i])
+    tutor_encourage = generate_text (encourage, temp=0.9)
+
+    with open(hype_file_path, "w") as hype_text_file: 
+      # save response as text file
+      hype_text_file.write(tutor_encourage)
+
+    with open(hype_file_path, "r") as hype_text_file:
+      lines = [line for line in hype_text_file if line.strip()]
+      
+      if lines:
+         random_line = random.choices(lines)
+         print("TutorBo says: " + random_line[0])
+
+      # for i, line in enumerate(hype_text_file, 1):
+      #     if i == random.randint(1,3):
+      #         print(line)
+      # print(hype_text_file)
+
+    #print (tutor_encourage)
+
+    data = {"text1:": usr_ans, "text2": real_ans}
+    headers = {
+        "Authorization": "Bearer " + api_key
+    }
+    response = requests.post(cohere_api_endpoint, json=data, headers=headers)
+  else:
+      print("This study session is complete!")
+    
+if response.status_code == 200:
+    result = response.json()
+    similarity_score = result["similarity_score"]
+    print(f"Similarity Score: {similarity_score}")
+else:
+    # print(f"API Request Failed: {response.status_code} - {response.text}")
+    print("Study session over!")
+
+headers = {
+    "Authorization": f"Bearer {api_key}"
+}
+
+# Make the API request
+# response = requests.post(cohere_api_endpoint, json=data, headers=headers)
+
+# if response.status_code == 200:
+#     result = response.json()
+#     similarity_score = result["similarity_score"]
+#     print(f"Similarity Score: {similarity_score}")
+# else:
+#     print(f"API Request Failed: {response.status_code} - {response.text}")
+
