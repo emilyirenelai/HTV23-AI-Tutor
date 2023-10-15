@@ -33,6 +33,9 @@ function Upload() {
     return (
         <div className="App">
             <div>
+              <div>
+                <h2>Upload Your Notes</h2>
+              </div>
                 <div className="drop-zone" onClick={clickInput}>
                 <span className="drop-zone__prompt">
                     Drop file here or click to upload
@@ -42,7 +45,7 @@ function Upload() {
             </div>
 
             <div >
-                <Link to="/learn"><button className='buttonStyle'>Learn with Bo</button></Link>
+                <Link to="/learn"><button className='buttonStyle'>Learn with Tutor Bo</button></Link>
             </div>
         </div>
     );

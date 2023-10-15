@@ -5,14 +5,14 @@ import { Link } from 'wouter';
 function GetNotes() {
     return (
         <div className="App"> 
-          <h1>Scan or upload the material you need help with!</h1>
+          <h2>Scan or upload the material you need help with!</h2>
 
-            <div className='buttonStyle'>
-                <Link to="/upload"><button className='buttonStyle' >Upload</button></Link>
+            <div>
+                <Link to="/upload"><button className='buttonStyle' >Upload </button></Link>
             </div>
 
-            <div className='buttonStyle' >
-                <Link to="/ar"><button className='buttonStyle'>Scan</button></Link>
+            <div >
+                <Link to="/ar"><button className='buttonStyle'>Camera</button></Link>
             </div>
         </div>
     );
