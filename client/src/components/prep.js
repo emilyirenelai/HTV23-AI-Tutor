@@ -12,7 +12,7 @@ function GetNotes() {
             </div>
 
             <div >
-                <Link to="/camera"><button className='buttonStyle'>Camera</button></Link>
+                <Link to="/ar"><button className='buttonStyle'>Camera</button></Link>
             </div>
         </div>
     );

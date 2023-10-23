@@ -11,7 +11,7 @@ function LoadBo() {
                 <h1>Meet Tutor Bo</h1>
                 <h1>Your own personal study buddy!</h1>
             </div>
-                <img src={bo} alt="TutorBo" class="bo"/>
+                <img src={bo} alt="TutorBo" className="bo"/>
             <div>
             <Link to="/prep"><button className='start'>Let's Learn</button></Link>
             </div>

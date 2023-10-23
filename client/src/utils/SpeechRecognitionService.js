@@ -42,6 +42,7 @@ class SpeechRecognitionService {
     }
   
     getFinalText() {
+      console.log("Hello please work " + this.finalText.trim());
       return this.finalText.trim();
     }
   

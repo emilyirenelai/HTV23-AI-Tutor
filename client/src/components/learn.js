@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import SpeechToText from './SpeechToText';
 
 const Assess = ({ data }) => {
-  const [loading, setLoading] = useState(false); // Assuming you have some loading mechanism
+  const [loading] = useState(false); // Assuming you have some loading mechanism
   const timeLimit = 180000; // 3 minutes
 
   return (
