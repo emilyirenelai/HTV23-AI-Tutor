@@ -5,8 +5,8 @@
 import cohere
 import fnmatch
 import random
-co = cohere.Client('L2VMOXwleskZQjVuP5QEe2puJTKNLAzGaRhSEVTK')
-api_key = 'L2VMOXwleskZQjVuP5QEe2puJTKNLAzGaRhSEVTK'
+co = cohere.Client('${{ secrets.COHERE_KEY }}')
+api_key = '${{ secrets.API_KEY }}'
 
 def generate_text(prompt, temp=0):
   response = co.generate(
