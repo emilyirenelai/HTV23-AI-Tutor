@@ -19,7 +19,7 @@ def generate_text(prompt, temp=0):
 
 # Replace with your Cohere API endpoint and API key
 cohere_api_endpoint = "https://api.cohere.ai/v1/embed"
-api_key = "L2VMOXwleskZQjVuP5QEe2puJTKNLAzGaRhSEVTK"
+api_key = "${{ secrets.API_KEY }}"
 
 # Texts to compare
 text1 = "This is the first piece of text."
